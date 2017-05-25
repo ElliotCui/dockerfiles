@@ -1,0 +1,17 @@
+FROM registry.kechenggezi.com:5001/ruby2.3-nodejs:latest
+
+ENV IMAGEMAGICK_VERSION 6.9.8-4
+
+RUN wget http://ftp.kddlabs.co.jp/graphics/ImageMagick/ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz && \
+tar xvzf ImageMagick-${IMAGEMAGICK_VERSION}.tar.gz --directory /tmp
+
+WORKDIR /tmp/ImageMagick-${IMAGEMAGICK_VERSION}
+
+RUN autoconf && \
+    ./configure && \
+    make && \
+    make install && \
+    ldconfig /usr/local/lib && \
+    rm -rf /tmp/ImageMagick-${IMAGEMAGICK_VERSION}
+
+RUN apt-get install libmagickcore-dev libmagickwand-dev

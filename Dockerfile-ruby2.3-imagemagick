@@ -1,0 +1,2 @@
+FROM registry.kechenggezi.com:5001/ruby2.3-nodejs:latest
+RUN apt-get install imagemagick libmagickcore-dev libmagickwand-dev
